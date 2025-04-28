@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Estudio Melany D'angelo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="img/logo.jpg" alt=""></a>
+            </div>
+            
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="#estudio">Estudio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="proyectos.html">Proyectos</a></li>
+                <li><a href="contact.html" class="active">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="contacto">
+        <section class="contacto-contenido">
+            <div class="contacto-textos">
+                <h2>¿Listo para tu proyecto?</h2>
+                <p>Si nuestro estilo de diseño y nivel de ejecución refleja tus necesidades y te interesa que desarrollemos un proyecto personalizado para diseñar y construir tu casa o para reformar y hacer el diseño interior de tu hogar, déjanos tus datos para que podamos acompañarte en el desarrollo de tu proyecto de principio a fin.</p>
+                <p><strong>SI NECESITAS CONSTRUIR, REMODELAR O REDISEÑAR TU PROPIEDAD, DÉJANOS TUS DATOS Y TE ENVIAREMOS NUESTRA METODOLOGÍA DE TRABAJO:</strong></p>
+            </div>
+
+            <div class="contacto-info">
+                <div class="contacto-info-item">
+                    <i class="fas fa-phone"></i>
+                    <p>+54 9 11 1234-5678</p>
+                </div>
+                <div class="contacto-info-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>info@estudiomelany.com</p>
+                </div>
+                <div class="contacto-info-item">
+                    <i class="fab fa-instagram"></i>
+                    <p>@estudiomelany</p>
+                </div>
+            </div>
+
+            <form class="contacto-formulario">
+                <input type="text" placeholder="Nombre" required>
+                <input type="text" placeholder="Localidad" required>
+                <input type="tel" placeholder="Teléfono" required>
+                <select required>
+                    <option value="">Tipo de Proyecto</option>
+                    <option value="construccion">Construcción</option>
+                    <option value="remodelacion">Remodelación</option>
+                    <option value="diseno-interior">Diseño Interior</option>
+                </select>
+                <input type="email" placeholder="Email" required>
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Logo -->
+            <div class="footer-logo">
+                <img src="img/logo.jpg" alt="">
+            </div>
+    
+            <!-- Información central -->
+            <div class="footer-info">
+                <p>© 2025. Estudio Melany D'angelo.</p>
+                <p>CABA y Zona Norte, Buenos Aires, Argentina</p>
+            </div>
+    
+            <!-- Contacto -->
+            <div class="footer-contacto">
+                <a href="tel:+5491112345678">
+                    <i class="fas fa-phone"></i> +54 9 11 1234-5678
+                </a>
+                <a href="mailto:info@estudiomelany.com">
+                    <i class="fas fa-envelope"></i> info@estudiomelany.com
+                </a>
+                <a href="https://instagram.com/estudiomelany" target="_blank">
+                    <i class="fab fa-instagram"></i> @estudiomelany
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
