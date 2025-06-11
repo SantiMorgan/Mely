@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Centro de Kinesiología - Estudio Melany D´angelo</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    
+    <!-- GLightbox CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="img/logo.jpg" alt="Logo"></a>
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html#estudio">Estudio</a></li>
+                <li><a href="index.html#servicios">Servicios</a></li>
+                <li><a href="proyectos.html" class="active">Proyectos</a></li>
+                <li><a href="contact.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="proyecto-detalle">
+            <!-- Galería de imágenes -->
+            <section class="proyecto-galeria-completa">
+                <h2>Galería de imágenes</h2>
+                <div class="galeria-grid">
+                    <div class="galeria-item">
+                        <a href="img/casa mirta/portada CASA MIRTA.png" class="glightbox" data-title="Foto 1 Casa Mirta">
+                            <img src="img/casa mirta/portada CASA MIRTA.png" alt="Foto 1 Casa Mirta" />
+                        </a>
+                    </div>
+                    <!--<div class="galeria-item">
+                        <a href="img/kinesio/kinesio2.jpg" class="glightbox" data-title="Foto 2 Centro de Kinesiología">
+                            <img src="img/kinesio/kinesio2.jpg" alt="Foto 2 Centro de Kinesiología" />
+                        </a>
+                    </div>
+                    <div class="galeria-item">
+                        <a href="img/kinesio/kinesio3.jpg" class="glightbox" data-title="Foto 3 Centro de Kinesiología">
+                            <img src="img/kinesio/kinesio3.jpg" alt="Foto 3 Centro de Kinesiología" />
+                        </a>
+                    </div>
+                    <div class="galeria-item">
+                        <a href="img/kinesio/kinesio4.jpg" class="glightbox" data-title="Foto 4 Centro de Kinesiología">
+                            <img src="img/kinesio/kinesio4.jpg" alt="Foto 4 Centro de Kinesiología" />
+                        </a>
+                    </div>-->
+                </div>
+            </section>
+
+            <!-- Descripción + detalles -->
+            <div class="proyecto-info-container">
+                <div class="proyecto-info-descripcion">
+                    <h2>Centro de kinesiología</h2>
+                    <p>
+                        Breve descripción del proyecto. Aquí puedes contar el concepto, los desafíos que se resolvieron, el enfoque de diseño, los materiales utilizados, o cualquier otro detalle que quieras destacar.
+                    </p>
+                    <p>
+                        Segundo párrafo opcional con más información sobre el proyecto, historia o inspiración.
+                    </p>
+                </div>
+
+                <div class="proyecto-info-detalles">
+                    <h3>Detalles del proyecto</h3>
+                    <div class="proyecto-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Categoría:</span>
+                            <span>Salud / Comercial</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Ubicación:</span>
+                            <span>Ciudad, País</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Año:</span>
+                            <span>2025</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Superficie:</span>
+                            <span>XXX m²</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="img/logo.jpg" alt="">
+            </div>
+            <div class="footer-info">
+                <p>© 2025. Estudio Melany D'angelo.</p>
+                <p>CABA y Zona Norte, Buenos Aires, Argentina</p>
+            </div>
+            <div class="footer-contacto">
+                <a href="tel:+5491112345678">
+                    <i class="fas fa-phone"></i> +54 9 11 1234-5678
+                </a>
+                <a href="mailto:info@estudiomelany.com">
+                    <i class="fas fa-envelope"></i> info@estudiomelany.com
+                </a>
+                <a href="https://instagram.com/estudiomelany" target="_blank">
+                    <i class="fab fa-instagram"></i> @estudiomelany
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GLightbox JS -->
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <script>
+        const lightbox = GLightbox({
+            selector: '.glightbox'
+        });
+    </script>
+
+    <!-- Tu script JS -->
+    <script src="script.js"></script>
+</body>
+</html>
