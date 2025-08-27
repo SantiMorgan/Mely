@@ -2,7 +2,7 @@
 
 Sitio web desarrollado para un estudio de arquitectura, con diseño responsivo y enfoque en comunicación clara de los servicios ofrecidos. El proyecto fue publicado en **Netlify** para facilitar su despliegue y acceso online.
 
-🔗 **Demo online:** [estudiodangelo.netlify.app](https://estudiodangelo.netlify.app/)  
+🔗 **Demo online:** [estudiodangelo.netlify.app](https://estudiodangleo.netlify.app/)  
 🔗 **Repositorio en GitHub:** [link-al-repo](https://github.com/tuusuario/Mely)  
 
 ---
