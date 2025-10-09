@@ -1,6 +1,7 @@
 :root {
     --primary-color: #28605F;
     --white: #ffffff;
+    --black: #000000;
 }
 
 * {
@@ -11,6 +12,7 @@
 
 body {
     font-family: Arial, sans-serif;
+    font-weight: 300;
 }
 
 /* ===== HEADER ===== */
@@ -166,6 +168,109 @@ body {
 }
 
 
+/* === SECCION ESTUDIO === */
+
+
+
+/* Sobre nosotros */
+/* ===== Split 50/50: Sobre nosotros ===== */
+.split-about{
+  display:grid;
+  grid-template-columns: 48% 52%;
+  gap:2rem;
+  min-height: 80vh;               /* alto generoso, podés ajustar */
+  background:#fff;
+}
+
+.split-about__text{
+  padding: clamp(2rem, 6vw, 5rem);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:1.25rem;
+}
+
+.split-about__eyebrow{
+  letter-spacing:.2em;
+  font-size:.9rem;
+  color:#777;
+}
+
+/* Base del título */
+.split-about__title {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-weight: 100; /* ultra fino */
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  color: #222;
+}
+
+
+.split-about__title .amp{
+  font-weight:200;
+  color: var(--primary-color);
+}
+
+.split-about__lead{
+  max-width: 60ch;
+  color:#444;
+  font-size: clamp(1rem, 1.3vw, 1.10rem);
+  font-weight: 300;
+}
+
+.split-about__cta{
+  align-self:flex-start;
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  text-decoration:none;
+  font-weight:600;
+  letter-spacing:.06em;
+  padding:.8rem 1.2rem;
+  border:1px solid var(--primary-color);
+  color: var(--primary-color);
+  border-radius: 999px;
+  transition: transform .2s ease, background .2s ease, color .2s ease;
+}
+
+.split-about__cta:hover{
+  transform: translateX(4px);
+  background: var(--primary-color);
+  color:#fff;
+}
+
+.split-about__cta-arrow{
+  font-size:1.1em;
+  line-height:1;
+}
+
+.split-about__media{
+  position:relative;
+  overflow:hidden;
+}
+
+.split-about__media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;      /* llena el 50% derecho sin deformar */
+  display:block;
+}
+
+/* --- Responsive --- */
+@media (max-width: 992px){
+  .split-about{
+    grid-template-columns: 1fr;
+    min-height: unset;
+  }
+  .split-about__media{
+    order:2;             /* imagen debajo del texto */
+    height: 48vh;        /* altura visual en mobile */
+  }
+}
+
+
+
 /* Estudio Styles */
 .estudio {
     padding: 4rem 2rem;
@@ -195,23 +300,46 @@ body {
     color: #333;
 }
 
-.estudio-filosofia,
-.estudio-trayectoria,
 .estudio-contacto {
-    margin-bottom: 3rem;
+    background-color: #fff;
+    text-align: center;
+    padding: 6rem 2rem;
+    letter-spacing: 0.2rem;
 }
 
-.estudio-filosofia h3,
-.estudio-trayectoria h3,
 .estudio-contacto h3 {
-    color: var(--primary-color);
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
+    font-family: 'Montserrat', sans-serif; /* o la fuente que uses */
+    font-weight: 100; /* súper fino */
+    font-size: 2.2rem;
+    color: #3d3d3d;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
 }
 
 .estudio-contacto p {
-    margin-bottom: 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: #333;
+    letter-spacing: 0.15rem;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
 }
+
+.btn-contacto {
+    background-color: #40655d; /* verde similar al de tu diseño */
+    color: #fff;
+    padding: 0.9rem 2.5rem;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.btn-contacto:hover {
+    background-color: #2f4f4a;
+}
+
 
 .btn {
     display: inline-block;
@@ -235,24 +363,6 @@ body {
     }
 }
 
-/* === SECCION QUÉ HACEMOS - SERVICIOS === */
-
-.servicios-estudio {
-    padding: 4rem 2rem;
-    background-color: #f9f9f9;
-}
-
-.servicios-estudio-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.servicios-estudio h2 {
-    font-size: 3rem;
-    margin-bottom: 3rem;
-    color: #28605F;
-}
 
 /* --- GRID DE SERVICIOS --- */
 
@@ -263,6 +373,21 @@ body {
     padding: 0 1rem;
     box-sizing: border-box;
 }
+
+.servicios-descripcion {
+  font-family: 'Raleway', Arial, sans-serif;
+  font-weight: 200;
+  font-size: 1.20rem;
+  line-height: 1.4; /* menos espacio vertical */
+  letter-spacing: 0.01em; /* menos separación horizontal */
+  color: #333;
+  max-width: 700px;
+  margin: 0 auto 2rem auto; /* centrado y con margen inferior */
+  text-align: center;
+}
+
+
+
 
 /* --- ITEM DE SERVICIO --- */
 
@@ -332,137 +457,123 @@ body {
 }
 
 
-
-.estudio-arquitecta {
-    display: flex;
-    align-items: center;
-    margin-bottom: 3rem;
-}
-
-.arquitecta-imagen {
-    flex: 0 0 200px;
-    margin-right: 2rem;
-}
-
-.arquitecta-imagen img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 50%;
-}
-
-.arquitecta-descripcion h3 {
-    color: var(--primary-color);
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-}
-
-
-@media (max-width: 768px) {
-    .estudio-arquitecta {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .arquitecta-imagen {
-        margin-right: 0;
-        margin-bottom: 1rem;
-    }
-
-    .arquitecta-imagen img {
-        width: 200px;
-        height: auto;
-    }
-}
-
-@media (max-width: 480px) {
-    .arquitecta-imagen img {
-        width: 150px;
-        height: auto;
-    }
-}
-
 /* Servicio Styles */
 
+/* ===== Servicios – Card Concept ===== */
 .servicios-conceptual {
-    padding: 8rem 0;
-    background: #f5f3f0;
+  padding: 8rem 0;
+  background: #ffffff;
 }
 
 .container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 20px;
-    box-sizing: border-box;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .section-title-concept {
-    font-size: 2.8rem;
-    text-align: center;
-    letter-spacing: 0.5rem;
-    color: var(--primary-color);
-    margin-bottom: 5rem;
-    text-transform: uppercase;
+  font-size: 3.5rem;
+  text-align: center;
+  letter-spacing: 0.3rem; /* un poco menos espaciado */
+  color: var(--black);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  font-family: 'Raleway', Arial, sans-serif; /* fuente más moderna y fina */
+  font-weight: 200; /* más delgada */
 }
+
 
 .grid-conceptual {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.2rem;
-    padding: 0 2rem;
-    box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  padding: 0 2rem;
+  box-sizing: border-box;
 }
 
+/* ---- Tarjetas ---- */
 .card-concept {
-    height: 600px; /* Altura fija para rectángulos verticales */
-    background-size: cover;
-    background-position: center;
-    padding: 3rem;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    box-sizing: border-box;
+  position: relative;
+  height: 600px;                 /* rectángulos verticales */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3rem;
+  box-sizing: border-box;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  isolation: isolate;            /* para superponer el overlay con ::before */
+  transition: transform .4s cubic-bezier(.25,.46,.45,.94);
 }
 
-.card-concept:hover {
-    transform: translateY(-15px);
+/* Overlay (antes estaba en el linear-gradient inline) */
+.card-concept::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(64, 64, 64, 0.8);
+  z-index: -1;                   /* queda debajo del contenido pero sobre la imagen */
 }
+
+.card-concept:hover { transform: translateY(-15px); }
 
 .card-concept h3 {
-    color: #fff;
-    font-size: 2.2rem;
-    margin-bottom: 2rem;
-    line-height: 1.3;
-    font-weight: 300;
-    text-transform: uppercase;
+  color: #fff;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  line-height: 1.3;
+  font-weight: 300;
+  text-transform: uppercase;
 }
 
 .card-concept h3 span {
-    display: block;
-    font-weight: 600;
-    margin-top: 0.5rem;
+  display: block;
+  font-weight: 600;
+  margin-top: 0.5rem;
 }
 
 .concept-text {
-    border-left: 3px solid #fff;
-    padding-left: 2rem;
-    box-sizing: border-box;
+  border-left: 3px solid #fff;
+  padding-left: 2rem;
+  box-sizing: border-box;
 }
 
 .concept-text p {
-    color: #fff;
-    font-size: 1.1rem;
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
 }
 
 .concept-text p strong {
-    font-weight: 600;
-    display: block;
-    margin-bottom: 1rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 1rem;
 }
+
+/* ---- Modificadores de imagen (reemplazan el style inline) ---- */
+/* OJO: archivos con espacios/paréntesis deben ir con comillas */
+.card--residencial { background-image: url("img/enhanced-image (5).png"); }
+.card--interiores  { background-image: url("img/enhanced-image (19).png"); }
+.card--reformas    { background-image: url("img/enhanced-image (13).png"); }
+.card--render      { background-image: url("img/1.png"); }
+.card--gestion     { background-image: url("img/9.jpeg"); }
+.card--paisajismo  { background-image: url("img/enhanced-image (23).png"); }
+
+/* ---- Responsive ---- */
+@media (max-width: 1100px){
+  .grid-conceptual { grid-template-columns: repeat(2, 1fr); }
+  .card-concept { height: 520px; }
+}
+
+@media (max-width: 680px){
+  .grid-conceptual { grid-template-columns: 1fr; padding: 0; }
+  .card-concept { height: 480px; padding: 2rem; }
+  .section-title-concept { letter-spacing: .3rem; font-size: 2.2rem; }
+}
+
 
 @media (max-width: 860px) {
     .hamburger {
@@ -730,7 +841,8 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top, rgba(40, 96, 95, 0.9), rgba(40, 96, 95, 0.5), transparent);
+    /*background: linear-gradient(to top, rgba(255, 255, 255, 0.9), rgba(40, 96, 95, 0.5), transparent);   degradient en verde */ 
+
     padding: 4rem 2rem 2rem;
     color: white;
     transition: all 0.3s ease;
@@ -1017,6 +1129,28 @@ body {
     background-color: rgba(40, 96, 95, 0.8);
 }
 
+.instagram-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit; /* mantiene el color actual */
+  gap: 10px;
+  transition: color 0.3s ease;
+}
+
+.instagram-link:hover {
+  color: #E1306C; /* color oficial de Instagram */
+}
+
+.contacto-formulario textarea {
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    resize: vertical; /* permite agrandar solo hacia arriba/abajo */
+    min-height: 150px;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .contacto-info {
@@ -1041,9 +1175,9 @@ body {
     margin-bottom: 2rem;
 }
 
-.galeria-grid {
+.galeria {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 15px;
 }
 
@@ -1067,13 +1201,13 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .galeria-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .galeria {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     }
 }
 
 @media (max-width: 480px) {
-    .galeria-grid {
+    .galeria {
         grid-template-columns: 1fr;
     }
 }
