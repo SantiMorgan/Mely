@@ -10,9 +10,21 @@
     box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'RomanS';
+  src: url('fonts/RomanS.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Calibri', Arial, sans-serif;
     font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway ligth', 'Calibri', Arial, sans-serif, 'Roboto';
+  font-weight: 400;
 }
 
 /* ===== HEADER ===== */
@@ -33,6 +45,8 @@ body {
     padding: 1rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
+    font-family: 'Calibri', Arial, sans-serif;
+    font-size: 19px;
 }
 
 .logo {
@@ -174,20 +188,22 @@ body {
 
 /* Sobre nosotros */
 /* ===== Split 50/50: Sobre nosotros ===== */
-.split-about{
-  display:grid;
+.split-about {
+  display: grid;
   grid-template-columns: 48% 52%;
-  gap:2rem;
-  min-height: 80vh;               /* alto generoso, podés ajustar */
-  background:#fff;
+  gap: 2rem;
+  min-height: unset; /* <- elimina la altura mínima forzada */
+  background: #fff;
+  align-items: center; /* centra verticalmente el contenido */
+  padding: 0rem 0; /* margen visual razonable arriba y abajo */
 }
 
-.split-about__text{
+.split-about__text {
   padding: clamp(2rem, 6vw, 5rem);
   display:flex;
   flex-direction:column;
-  justify-content:center;
-  gap:1.25rem;
+
+  gap:1.25rem; 
 }
 
 .split-about__eyebrow{
@@ -198,7 +214,7 @@ body {
 
 /* Base del título */
 .split-about__title {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: 'Raleway ligth', 'Calibri', Arial, sans-serif;
   font-weight: 100; /* ultra fino */
   font-size: clamp(2.5rem, 5vw, 4rem);
   letter-spacing: 0.08em;
@@ -215,46 +231,52 @@ body {
 .split-about__lead{
   max-width: 60ch;
   color:#444;
-  font-size: clamp(1rem, 1.3vw, 1.10rem);
+  font-size: clamp(1rem, 1.3vw, 1.20rem);
   font-weight: 300;
 }
 
-.split-about__cta{
-  align-self:flex-start;
+.split-about__cta {
+  position: static;
+  margin-top: 1.25rem;      /* lo subís/bajás con este valor */
+  align-self: flex-end;   /* alineado a la izquierda (o flex-end si lo querés a la derecha) */
   display:inline-flex;
   align-items:center;
-  gap:.5rem;
+  gap:.3rem;
   text-decoration:none;
-  font-weight:600;
+  font-weight:400;
   letter-spacing:.06em;
-  padding:.8rem 1.2rem;
-  border:1px solid var(--primary-color);
+  padding:.6rem 1rem;
   color: var(--primary-color);
-  border-radius: 999px;
   transition: transform .2s ease, background .2s ease, color .2s ease;
+  justify-content: flex-end;
+  text-align: center;
+  width: 100%;
 }
 
-.split-about__cta:hover{
-  transform: translateX(4px);
-  background: var(--primary-color);
-  color:#fff;
-}
 
-.split-about__cta-arrow{
-  font-size:1.1em;
-  line-height:1;
-}
 
 .split-about__media{
-  position:relative;
+  max-height: 800px;
   overflow:hidden;
 }
 
 .split-about__media img{
-  width:100%;
-  height:100%;
-  object-fit:cover;      /* llena el 50% derecho sin deformar */
-  display:block;
+
+  height: 100%; /* probá con 80%, 70%, etc. */
+  width: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.split-about__title--vermas{
+  font-family: 'Raleway ligth', 'Calibri', Arial, sans-serif;
+  font-weight: 400; /* ultra fino */
+  font-size: 30px;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  color: #222;
+  justify-content: center;
+  text-align: center;
 }
 
 /* --- Responsive --- */
@@ -266,6 +288,10 @@ body {
   .split-about__media{
     order:2;             /* imagen debajo del texto */
     height: 48vh;        /* altura visual en mobile */
+  }
+  .split-about__cta{
+    margin-top: 1rem;
+    align-self: flex-start;
   }
 }
 
@@ -364,20 +390,11 @@ body {
 }
 
 
-/* --- GRID DE SERVICIOS --- */
-
-.servicios-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    padding: 0 1rem;
-    box-sizing: border-box;
-}
+/* --- SERVICIOS --- */
 
 .servicios-descripcion {
-  font-family: 'Raleway', Arial, sans-serif;
-  font-weight: 200;
-  font-size: 1.20rem;
+  font-weight: 250;
+  font-size: 1.25rem;
   line-height: 1.4; /* menos espacio vertical */
   letter-spacing: 0.01em; /* menos separación horizontal */
   color: #333;
@@ -386,78 +403,6 @@ body {
   text-align: center;
 }
 
-
-
-
-/* --- ITEM DE SERVICIO --- */
-
-.servicio-item {
-    padding: 2rem;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    box-sizing: border-box;
-    background-color: #fff; /* opcional, para mejor contraste */
-    border: 1px solid #eee; /* opcional, para separar visualmente */
-    border-radius: 8px;     /* opcional, bordes redondeados */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.servicio-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
-
-/* --- IMAGEN DEL SERVICIO --- */
-
-.servicio-item img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 1rem;
-    object-fit: contain;
-}
-
-/* --- TITULO DEL SERVICIO --- */
-
-.servicio-item h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: #333;
-}
-
-/* --- TEXTO DEL SERVICIO --- */
-
-.servicio-texto {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #666;
-    text-align: center;
-}
-
-/* === MEDIA QUERIES === */
-
-@media (max-width: 1024px) {
-    .servicios-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .servicios-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 480px) {
-    .servicios-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-/* Servicio Styles */
 
 /* ===== Servicios – Card Concept ===== */
 .servicios-conceptual {
@@ -479,8 +424,8 @@ body {
   color: var(--black);
   margin-bottom: 1.5rem;
   text-transform: uppercase;
-  font-family: 'Raleway', Arial, sans-serif; /* fuente más moderna y fina */
-  font-weight: 200; /* más delgada */
+  font-family: 'Raleway ligth', 'Calibri'; /* fuente más moderna y fina */
+  font-weight: 100; /* más delgada */
 }
 
 
@@ -495,16 +440,17 @@ body {
 /* ---- Tarjetas ---- */
 .card-concept {
   position: relative;
-  height: 600px;                 /* rectángulos verticales */
+  height: 600px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;   /* centrado vertical del contenido */
+  align-items: flex-start;
   padding: 3rem;
   box-sizing: border-box;
   background-size: cover;
   background-position: center;
   overflow: hidden;
-  isolation: isolate;            /* para superponer el overlay con ::before */
+  isolation: isolate;
   transition: transform .4s cubic-bezier(.25,.46,.45,.94);
 }
 
@@ -513,7 +459,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(64, 64, 64, 0.8);
+  background: rgba(7, 7, 7, 0.518);
   z-index: -1;                   /* queda debajo del contenido pero sobre la imagen */
 }
 
@@ -521,46 +467,34 @@ body {
 
 .card-concept h3 {
   color: #fff;
-  font-size: 2.2rem;
-  margin-bottom: 2rem;
-  line-height: 1.3;
+  font-size: clamp(1.8rem, 2.4vw, 2.8rem);  /* más grande y responsive */
+  margin-bottom: 1.1rem;
+  line-height: 1.2;
   font-weight: 300;
   text-transform: uppercase;
-}
-
-.card-concept h3 span {
-  display: block;
-  font-weight: 600;
-  margin-top: 0.5rem;
+  letter-spacing: .02em;
+  text-shadow: 0 2px 8px rgba(0,0,0,.25);   /* legibilidad */
 }
 
 .concept-text {
-  border-left: 3px solid #fff;
-  padding-left: 2rem;
-  box-sizing: border-box;
+  padding-left: 0;           /* quitamos sangría */
+  max-width: 42ch;           /* ancho de lectura cómodo */
+
 }
 
 .concept-text p {
   color: #fff;
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 1.15vw, 1.1rem);
   line-height: 1.8;
-  margin-bottom: 1.5rem;
+  margin: 0;
+  text-shadow: 0 1px 6px rgba(0,0,0,.25);
 }
 
-.concept-text p strong {
-  font-weight: 600;
-  display: block;
-  margin-bottom: 1rem;
-}
 
 /* ---- Modificadores de imagen (reemplazan el style inline) ---- */
-/* OJO: archivos con espacios/paréntesis deben ir con comillas */
-.card--residencial { background-image: url("img/enhanced-image (5).png"); }
-.card--interiores  { background-image: url("img/enhanced-image (19).png"); }
-.card--reformas    { background-image: url("img/enhanced-image (13).png"); }
-.card--render      { background-image: url("img/1.png"); }
-.card--gestion     { background-image: url("img/9.jpeg"); }
-.card--paisajismo  { background-image: url("img/enhanced-image (23).png"); }
+.card--residencial { background-image: url("img/Servicios/imagen\ 1\ proyecto.jpg"); }
+.card--interiores  { background-image: url("img/Servicios/imagen\ 2\ interiorismo.jpg"); }
+.card--reformas    { background-image: url("img/Servicios/imagen\ 3\ direccion.jpg"); }
 
 /* ---- Responsive ---- */
 @media (max-width: 1100px){
@@ -655,9 +589,8 @@ body {
 
 /* - Footer */
 .footer {
-    background-color: var(--primary-color);
     padding: 2rem 0; /* en desktop queda igual */
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .footer-container {
@@ -689,7 +622,7 @@ body {
 }
 
 .footer-contacto a {
-    color: white;
+    color: rgb(0, 0, 0);
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -761,10 +694,10 @@ body {
 }
 
 .proyectos-header h2 {
-    color: var(--primary-color);
+    color:#000000;
     font-size: 2.5rem;
     text-transform: uppercase;
-    letter-spacing: 0.5rem;
+    letter-spacing: 0.2rem;
     margin-bottom: 2rem;
 }
 
@@ -870,12 +803,14 @@ body {
 }
 
 .proyecto-link {
-    display: inline-block;
-    color: white;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(0, 0, 0);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.9rem;
-    border-bottom: 1px solid white;
+    font-size: 1rem;
+    border-bottom: 1px solid rgb(0, 0, 0);
     padding-bottom: 2px;
     transition: all 0.2s ease;
 }
@@ -1077,7 +1012,7 @@ body {
 }
 
 .contacto-textos h2 {
-    color: var(--primary-color);
+    color:#000000;
     font-size: 2.5rem;
     margin-bottom: 2rem;
 }
@@ -1199,15 +1134,26 @@ body {
     transform: scale(1.05);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .galeria {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    }
+
+.btn-atras {
+  display: inline-block;
+  background-color: var(--primary-color);   /* color principal */
+  color: #ffffff;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 12px 26px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin: 0 0 -30px 60px;  /* margen superior, derecha, inferior, izquierda */
+  text-decoration: none;
 }
 
-@media (max-width: 480px) {
-    .galeria {
-        grid-template-columns: 1fr;
-    }
+.btn-atras:hover {
+  background-color: #1f4d4c;   /* tono más oscuro al pasar el mouse */
+  transform: translateY(-2px);
 }
+
+
+/* Responsive
+   The .galeria grid is now fully responsive using auto-fill and minmax, so no specific media queries are needed here. */

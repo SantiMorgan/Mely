@@ -136,4 +136,71 @@ document.addEventListener('DOMContentLoaded', function() {
 
     }
 
+
+    // --- EmailJS: inicialización y envío del formulario ---
+    document.addEventListener('DOMContentLoaded', () => {
+    // 1) Inicializar EmailJS con tu Public Key
+    emailjs.init('YOUR_PUBLIC_KEY'); // <-- poné tu Public Key
+
+    const form = document.getElementById('contactForm');
+    if (!form) return; // por si este JS carga en páginas sin el form
+
+    const btn = document.getElementById('sendBtn');
+    const statusEl = document.getElementById('formStatus');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // 2) Honeypot anti-bots (si lo completan, no enviamos)
+        const gotcha = document.getElementById('gotcha');
+        if (gotcha && gotcha.value.trim() !== '') return;
+
+        // 3) Armar los datos a enviar (los "name" del HTML deben coincidir)
+        const templateParams = {
+            from_name: form.from_name.value.trim(),
+            from_email: form.from_email.value.trim(),
+            phone: form.phone.value.trim(),
+            city: form.city.value.trim(),
+            square_meters: form.square_meters.value.trim(),
+            message: form.message.value.trim(),
+            page_url: window.location.href,
+            timestamp: new Date().toLocaleString(),
+        };
+
+        // 4) UI: estado cargando
+        if (btn) {
+            btn.disabled = true;
+            btn.textContent = 'Enviando…';
+        }
+        if (statusEl) {
+            statusEl.textContent = '';
+            statusEl.style.color = '';
+        }
+
+        try {
+            // 5) Enviar por EmailJS
+            await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams);
+            if (statusEl) {
+                statusEl.textContent = '¡Gracias! Tu mensaje fue enviado correctamente.';
+                statusEl.style.color = '#2e7d32';
+            }
+            form.reset();
+        } catch (err) {
+            console.error(err);
+            if (statusEl) {
+                statusEl.textContent =
+                'Hubo un problema al enviar. Intentá nuevamente o escribinos por Instagram/email.';
+                statusEl.style.color = '#c62828';
+            }
+        } finally {
+            // 6) Restaurar botón
+            if (btn) {
+                btn.disabled = false;
+                btn.textContent = 'Enviar';
+            }
+        }
+    });
+    });
+
+
 });

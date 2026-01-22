@@ -6,12 +6,13 @@
     <title>Contacto - Estudio Melany D'angelo</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="img/logo solo.png" type="image/x-icon" />
 </head>
 <body>
     <header class="header">
         <nav class="navbar">
             <div class="logo">
-                <a href="index.html"><img src="img/logo.jpg" alt=""></a>
+                <a href="index.html"><img src="img/logo solo.png" alt=""></a>
             </div>
             
             <div class="hamburger">
@@ -31,7 +32,7 @@
     <main class="contacto">
         <section class="contacto-contenido">
             <div class="contacto-textos">
-                <h2>¿Listo para tu proyecto?</h2>
+                <h2 class="split-about__title split-about__title--outline">CONTACTO</h2>
                 <p>Si estas pensando en construir, diseñar o rediseñar tu espacio, completa el formulario y alguien del estudio se pondra en contacto.</p>
                 <p>Desde el diseño hasta los detalles finales, te acompañamos en cada etapa.</p>
             </div>
@@ -39,26 +40,30 @@
             <div class="contacto-info">
                 <div class="contacto-info-item">
                     <i class="fas fa-envelope"></i>
-                    <p>info@estudiomelany.com</p>
+                    <p>arq.melanydangelo@gmail.com</p>
                 </div>
                 <div class="contacto-info-item">
-                    <a href="https://www.instagram.com/estudiomelany" target="_blank" class="instagram-link">
+                    <a href="https://www.instagram.com/arq.melanydangelo" target="_blank" class="instagram-link">
                     <i class="fab fa-instagram"></i>
-                    <p>@estudiomelany</p>
+                    <p>@arq.melanydangelo</p>
                     </a>
                 </div>
             </div>
 
-            <form class="contacto-formulario">
-                <input type="text" placeholder="Nombre" required>
-                <input type="email" placeholder="Email" required>
-                <input type="tel" placeholder="Teléfono" required>
-                <input type="text" placeholder="Localidad" required>
-                <input type="text" placeholder="Metros cuadrados" required>
-                <textarea placeholder="Escribí tu mensaje o consulta..." rows="5" required></textarea>
+            <form id="contactForm" class="contacto-formulario" novalidate>
+                <!-- honeypot anti-bots (oculto) -->
+                <input type="text" name="_gotcha" id="gotcha" style="display:none">
 
+                <input type="text"    id="from_name"     name="from_name"     placeholder="Nombre" required>
+                <input type="email"   id="from_email"    name="from_email"    placeholder="Email" required>
+                <input type="tel"     id="phone"         name="phone"         placeholder="Teléfono" required>
+                <input type="text"    id="city"          name="city"          placeholder="Localidad" required>
+                <input type="text"    id="square_meters" name="square_meters" placeholder="Metros cuadrados" required>
 
-                <button type="submit">Enviar</button>
+                <textarea id="message" name="message" placeholder="Escribí tu mensaje o consulta..." rows="5" required></textarea>
+
+                <button type="submit" id="sendBtn">Enviar</button>
+                <p id="formStatus" style="margin-top:.75rem; font-size:.95rem;"></p>
             </form>
         </section>
     </main>
@@ -78,11 +83,8 @@
     
             <!-- Contacto -->
             <div class="footer-contacto">
-                <a href="tel:+5491112345678">
-                    <i class="fas fa-phone"></i> +54 9 11 1234-5678
-                </a>
-                <a href="mailto:info@estudiomelany.com">
-                    <i class="fas fa-envelope"></i> info@estudiomelany.com
+                <a href="mailto:arq.melanydangelo@gmail.com">
+                    <i class="fas fa-envelope"></i> arq.melanydangelo@gmail.com
                 </a>
                 <a href="https://instagram.com/estudiomelany" target="_blank">
                     <i class="fab fa-instagram"></i> @estudiomelany
@@ -91,6 +93,19 @@
         </div>
     </footer>
 
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function(){
+            emailjs.init("TU_PUBLIC_KEY");
+        })();
+
+        document.querySelector(".contacto-formulario").addEventListener("submit", function(e) {
+            e.preventDefault();
+            emailjs.sendForm("TU_SERVICE_ID", "TU_TEMPLATE_ID", this)
+            .then(() => alert("Mensaje enviado con éxito 🎉"))
+            .catch((error) => alert("Error al enviar: " + error));
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
