@@ -3,16 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto - Estudio Melany D'angelo</title>
+    <title>Contacto - Estudio Melany D'Angelo | Arquitectura CABA y Zona Norte</title>
+    <meta name="description" content="Contactá al Estudio Melany D'Angelo para tu proyecto de arquitectura, diseño de interiores o reforma en CABA y Zona Norte, Buenos Aires. Respondemos por email e Instagram.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.estudiomelanydangelo.com.ar/contact.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Contacto - Estudio Melany D'Angelo">
+    <meta property="og:description" content="Contactá al estudio para tu proyecto de arquitectura, diseño de interiores o reforma en CABA y Zona Norte, Buenos Aires.">
+    <meta property="og:image" content="https://www.estudiomelanydangelo.com.ar/img/logo.jpg">
+    <meta property="og:url" content="https://www.estudiomelanydangelo.com.ar/contact.html">
+    <meta property="og:locale" content="es_AR">
+
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" href="img/logo solo.png" type="image/x-icon" />
+
+    <!-- Datos estructurados Schema.org (SEO local / GEO) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "@id": "https://www.estudiomelanydangelo.com.ar/#organization",
+      "name": "Estudio Melany D'Angelo - Arquitectura",
+      "url": "https://www.estudiomelanydangelo.com.ar/",
+      "email": "arq.melanydangelo@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Ciudad Autónoma de Buenos Aires",
+        "addressRegion": "Buenos Aires",
+        "addressCountry": "AR"
+      },
+      "areaServed": [
+        { "@type": "AdministrativeArea", "name": "Ciudad Autónoma de Buenos Aires (CABA)" },
+        { "@type": "AdministrativeArea", "name": "Zona Norte, Provincia de Buenos Aires" }
+      ],
+      "sameAs": [
+        "https://instagram.com/estudiomelany"
+      ]
+    }
+    </script>
 </head>
 <body>
     <header class="header">
         <nav class="navbar">
             <div class="logo">
-                <a href="index.html"><img src="img/logo solo.png" alt=""></a>
+                <a href="index.html"><img src="img/logo solo.png" alt="Estudio Melany D'Angelo - Arquitectura"></a>
             </div>
             
             <div class="hamburger">
@@ -32,7 +68,7 @@
     <main class="contacto">
         <section class="contacto-contenido">
             <div class="contacto-textos">
-                <h2 class="split-about__title split-about__title--outline">CONTACTO</h2>
+                <h1 class="split-about__title split-about__title--outline">CONTACTO</h1>
                 <p>Si estas pensando en construir, diseñar o rediseñar tu espacio, completa el formulario y alguien del estudio se pondra en contacto.</p>
                 <p>Desde el diseño hasta los detalles finales, te acompañamos en cada etapa.</p>
             </div>
@@ -87,25 +123,14 @@
                     <i class="fas fa-envelope"></i> arq.melanydangelo@gmail.com
                 </a>
                 <a href="https://instagram.com/estudiomelany" target="_blank">
-                    <i class="fab fa-instagram"></i> @estudiomelany
+                    <i class="fab fa-instagram"></i> @arq.melanydangelo
                 </a>
             </div>
         </div>
     </footer>
 
+    <!-- El envío del formulario (EmailJS) se maneja desde script.js para evitar doble inicialización -->
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script>
-        (function(){
-            emailjs.init("TU_PUBLIC_KEY");
-        })();
-
-        document.querySelector(".contacto-formulario").addEventListener("submit", function(e) {
-            e.preventDefault();
-            emailjs.sendForm("TU_SERVICE_ID", "TU_TEMPLATE_ID", this)
-            .then(() => alert("Mensaje enviado con éxito 🎉"))
-            .catch((error) => alert("Error al enviar: " + error));
-        });
-    </script>
     <script src="script.js"></script>
 </body>
 </html>

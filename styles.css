@@ -17,6 +17,13 @@
   font-style: normal;
 }
 
+html, body {
+    /* Evita scroll horizontal no deseado provocado por elementos
+       que se desbordan del viewport en pantallas chicas */
+    overflow-x: hidden;
+    width: 100%;
+}
+
 body {
     font-family: 'Calibri', Arial, sans-serif;
     font-weight: 300;
@@ -123,15 +130,70 @@ h1, h2, h3, h4, h5, h6 {
 .carousel {
     margin-top: 80px;
     width: 100%;
-    height: 100vh;
+    /* Resta la altura fija de la navbar (80px) para que el carrusel
+       entre completo en el viewport sin necesidad de scroll */
+    height: calc(100vh - 80px);
     position: relative;
     overflow: hidden;
 }
 
 .carousel-container {
     width: 100%;
-    height: 100%;
+    height: calc(100vh - 80px);
     position: relative;
+}
+
+/* Capa oscura sutil para dar contraste al texto superpuesto */
+.carousel-container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.55) 0%,
+        rgba(0, 0, 0, 0.22) 38%,
+        rgba(0, 0, 0, 0.05) 65%,
+        rgba(0, 0, 0, 0.15) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+.carousel-caption {
+    position: absolute;
+    left: clamp(1.5rem, 5vw, 4rem);
+    bottom: clamp(2.5rem, 10vh, 6rem);
+    z-index: 2;
+    max-width: 640px;
+    color: #fff;
+}
+
+.carousel-caption__title {
+    font-family: 'Raleway ligth', 'Calibri', Arial, sans-serif;
+    font-weight: 200;
+    font-size: clamp(1.6rem, 3.6vw, 2.8rem);
+    letter-spacing: 0.06em;
+    line-height: 1.25;
+    margin: 0 0 0.75rem;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
+}
+
+.carousel-caption__subtitle {
+    font-weight: 300;
+    font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.92);
+    margin: 0;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 680px) {
+    .carousel-caption {
+        left: 1.25rem;
+        right: 1.25rem;
+        bottom: 2rem;
+        max-width: none;
+    }
 }
 
 .carousel-slide {
@@ -159,18 +221,30 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(40, 96, 95, 0.5);
-    color: white;
-    border: none;
-    padding: 1rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+    padding: 0;
     cursor: pointer;
-    font-size: 1.5rem;
-    z-index: 2;
-    transition: background 0.3s ease;
+    font-size: 1.1rem;
+    line-height: 1;
+    z-index: 3;
+    transition: background 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+    opacity: 0.75;
 }
 
 .carousel-button:hover {
-    background: rgba(40, 96, 95, 0.8);
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.6);
+    opacity: 1;
 }
 
 .prev {
@@ -179,6 +253,41 @@ h1, h2, h3, h4, h5, h6 {
 
 .next {
     right: 1rem;
+}
+
+/* --- Carrusel responsive (mobile) --- */
+@media (max-width: 768px) {
+    .carousel {
+        height: 60vh;
+        min-height: 50vh;
+    }
+
+    .carousel-container {
+        height: 100%;
+    }
+
+    .carousel-caption {
+        left: 1.25rem;
+        right: 1.25rem;
+        bottom: 1.5rem;
+        max-width: none;
+    }
+
+    .carousel-caption__title {
+        font-size: clamp(1.3rem, 5.5vw, 1.5rem);
+        margin-bottom: 0.5rem;
+    }
+
+    .carousel-caption__subtitle {
+        font-size: 0.9rem;
+    }
+
+    .carousel-button {
+        width: 2.1rem;
+        height: 2.1rem;
+        font-size: 0.9rem;
+        top: 42%;
+    }
 }
 
 
@@ -459,8 +568,14 @@ h1, h2, h3, h4, h5, h6 {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(7, 7, 7, 0.518);
+  background: rgba(5, 5, 5, 0.64);
   z-index: -1;                   /* queda debajo del contenido pero sobre la imagen */
+}
+
+/* La tarjeta de Dirección y ejecución de obra usa un fondo más claro:
+   overlay reforzado para que el texto blanco no se encandile */
+.card--reformas::before {
+  background: rgba(0, 0, 0, 0.72);
 }
 
 .card-concept:hover { transform: translateY(-15px); }
@@ -503,7 +618,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 680px){
-  .grid-conceptual { grid-template-columns: 1fr; padding: 0; }
+  .grid-conceptual { grid-template-columns: 1fr; padding: 0 1.5rem; }
   .card-concept { height: 480px; padding: 2rem; }
   .section-title-concept { letter-spacing: .3rem; font-size: 2.2rem; }
 }
@@ -530,10 +645,6 @@ h1, h2, h3, h4, h5, h6 {
 
     .nav-menu.active {
         display: flex;
-    }
-
-    .carousel {
-        height: 400px;
     }
 
     .estudio-tipos {
@@ -646,9 +757,12 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .footer-container {
-        flex-direction:row;
-        gap: 1rem; /* menos espacio entre items */
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         text-align: center;
+        gap: 1.25rem;
+        padding: 0 1.5rem;
     }
 
     .footer-logo img {
@@ -657,8 +771,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .footer-info {
-        order: 3;
-        margin: 0.5rem 0; /* menos margen */
+        margin: 0; /* el gap del contenedor ya separa los bloques */
         font-size: 0.9rem; /* texto un poco más chico */
     }
 
@@ -693,7 +806,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 3rem;
 }
 
-.proyectos-header h2 {
+.proyectos-header h1 {
     color:#000000;
     font-size: 2.5rem;
     text-transform: uppercase;
@@ -937,14 +1050,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 768px) {
+    .proyectos-grid,
+    .proyectos-descripcion,
+    .proyectos-filtros {
+        padding: 0 1.5rem;
+    }
+
     .proyectos-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .proyecto-card {
         height: 350px;
     }
-    
+
     .proyecto-titulo {
         font-size: 1.5rem;
     }
@@ -976,7 +1095,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 480px) {
-    .proyectos-header h2 {
+    .proyectos-header h1 {
         font-size: 2rem;
         letter-spacing: 0.3rem;
     }
@@ -1011,7 +1130,7 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
-.contacto-textos h2 {
+.contacto-textos h1 {
     color:#000000;
     font-size: 2.5rem;
     margin-bottom: 2rem;
@@ -1021,6 +1140,7 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.8;
     margin-bottom: 1.5rem;
     color: #333;
+    font-size: 18px;
 }
 
 .contacto-info {
@@ -1088,6 +1208,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Responsive */
 @media (max-width: 768px) {
+    .contacto {
+        padding: 6rem 1.5rem 3rem;
+    }
+
     .contacto-info {
         flex-direction: column;
         align-items: center;
@@ -1103,7 +1227,7 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 auto;
 }
 
-.proyecto-galeria-completa h2 {
+.proyecto-galeria-completa h1 {
     text-align: center;
     color: var(--primary-color);
     font-size: 2.2rem;
@@ -1152,6 +1276,29 @@ h1, h2, h3, h4, h5, h6 {
 .btn-atras:hover {
   background-color: #1f4d4c;   /* tono más oscuro al pasar el mouse */
   transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .proyecto-galeria-completa {
+    padding: 3rem 1.5rem;
+  }
+
+  .btn-atras {
+    margin: 1.5rem 0 -20px 1.5rem; /* mismo margen lateral que el resto del contenido */
+  }
+}
+
+/* Utilidad SEO/accesibilidad: visible para lectores de pantalla y buscadores, oculta visualmente */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 
